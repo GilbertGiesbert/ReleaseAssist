@@ -1,0 +1,13 @@
+.pageRow {
+  display: flex;
+}
+
+.pageColumnLeft {
+  float: left;
+  width: 25%;
+}
+
+.pageColumnRight {
+  float: left;
+  width: 75%;
+}
