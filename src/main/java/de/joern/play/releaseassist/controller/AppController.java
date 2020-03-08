@@ -11,8 +11,7 @@ public class AppController {
  
     @RequestMapping(method = RequestMethod.GET)
     public String mapHome(ModelMap model) {
-        model.addAttribute("greeting", "hi, here's joern");
-        return "index";
+        return "home";
     }
  
     @RequestMapping(value = "/release-build", method = RequestMethod.GET)

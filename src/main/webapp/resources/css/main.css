@@ -21,16 +21,15 @@ body {
   width: 30%;
 }
 
+h1 {
+  margin-bottom: 24px;
+}
 
 .flagContainer {
-    width: 32px;
-    height: 24px;
     float: right;
     white-space: nowrap;
 }
 
-/* resize images */
-.flagContainer img {
-    width: 100%;
-    height: auto;
+.flagIcon {
+    width: 32px;
 }

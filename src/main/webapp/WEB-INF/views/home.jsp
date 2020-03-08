@@ -2,12 +2,10 @@
 <%@ page
         language="java"
         contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
-<%@taglib
-        prefix="c"
-        uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+        pageEncoding="ISO-8859-1"
+        trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setBundle basename="message" var="messageBundle" />
 <fmt:message key="pages.home.title" bundle="${messageBundle}" var="pageTitle"/>
@@ -26,10 +24,10 @@
 		    	<jsp:include page="languageSwitch.jsp" />
 		        <h1>${pageTitle}</h1>
 		        <p>
-		            <a href="release-table"><fmt:message key="pages.releaseTable.title" bundle="${messageBundle}"/></a>
+		            <a href="release-table"><fmt:message key="pages.home.link.releaseTable" bundle="${messageBundle}"/></a>
 		        </p>
 		        <p>
-		            <a href="release-build"><fmt:message key="pages.releaseBuild.title" bundle="${messageBundle}"/></a>
+		            <a href="release-build"><fmt:message key="pages.home.link.releaseBuild" bundle="${messageBundle}"/></a>
 		        </p>
 		    </div>
 		    <div class="pageColumnRight"></div>

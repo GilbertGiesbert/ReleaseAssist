@@ -2,22 +2,21 @@
 <%@ page
         language="java"
         contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
-<%@taglib
-        prefix="c"
-        uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+        pageEncoding="ISO-8859-1"
+        trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setBundle basename="message" var="messageBundle" />
 
 <p class="flagContainer">
-	<a href="<c:url value="/?lang=de"/>">
-		<img title="<fmt:message key="common.languageSwitch.de" bundle="${messageBundle}"/>"
-				src="<c:url value="/images/flag-germany-rect.png"/>" width="32px">
+	<a href="?lang=de">
+		<img class="flagIcon" title="<fmt:message key="common.languageSwitch.de" bundle="${messageBundle}"/>"
+				src="<c:url value="/images/flag-germany-rect.png"/>" >
 	</a>
 	&nbsp;
-	<a href="<c:url value="/?lang=en"/>">
-		<img title="<fmt:message key="common.languageSwitch.en" bundle="${messageBundle}"/>"
-				src="<c:url value="/images/flag-usa-rect.png"/>">
+	<a href="?lang=en">
+		<img class="flagIcon" title="<fmt:message key="common.languageSwitch.en" bundle="${messageBundle}"/>"
+				src="<c:url value="/images/flag-usa-rect.png"/>" >
 	</a>
 </p>
