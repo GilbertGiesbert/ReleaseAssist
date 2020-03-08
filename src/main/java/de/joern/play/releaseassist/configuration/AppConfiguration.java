@@ -1,13 +1,10 @@
 package de.joern.play.releaseassist.configuration;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -35,6 +32,11 @@ public class AppConfiguration implements WebMvcConfigurer {
 	      
 	      // Register resource handler for js
 	      registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
+	      
+	      // Register resource handler for images
+	      registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/images/");
+	      // use cache
+	      // .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 
 		   registry
 				   .addResourceHandler("/webjars/**")
@@ -49,7 +51,9 @@ public class AppConfiguration implements WebMvcConfigurer {
 
 	@Bean
 	public LocaleResolver localeResolver() {
-		return new UrlLocaleResolver();
+		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+		localeResolver.setDefaultLocale(Locale.US);
+		return localeResolver;
 	}
 
 	@Bean

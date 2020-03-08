@@ -1,13 +1,36 @@
+body {
+	margin: 24px;
+}
+
 .pageRow {
   display: flex;
 }
 
 .pageColumnLeft {
   float: left;
-  width: 25%;
+  width: 30%;
+}
+
+.pageColumnCenter {
+  float: center;
+  width: 40%;
 }
 
 .pageColumnRight {
-  float: left;
-  width: 75%;
+  float: right;
+  width: 30%;
+}
+
+
+.flagContainer {
+    width: 32px;
+    height: 24px;
+    float: right;
+    white-space: nowrap;
+}
+
+/* resize images */
+.flagContainer img {
+    width: 100%;
+    height: auto;
 }

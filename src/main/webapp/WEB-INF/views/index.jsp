@@ -1,5 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@ page
         language="java"
         contentType="text/html; charset=ISO-8859-1"
@@ -11,38 +10,30 @@
 
 
 <fmt:setBundle basename="message" var="messageBundle" />
+<fmt:message key="pages.home.title" bundle="${messageBundle}" var="pageTitle"/>
 
 <html>
-<head>
+	
+	<jsp:include page="head.jsp" >
+		<jsp:param name="pageTitle" value="${pageTitle}"/>
+	</jsp:include>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <script src="<c:url value="/webjars/jquery/jquery.js"/>"></script>
-    <script src="<c:url value="/js/main.js"/>"></script>
-    <link href="<c:url value="/css/main.css"/>" rel="stylesheet">
-    <title>ReleaseAssist</title>
-
-</head>
-<body>
-
-
-<div class="pageRow">
-    <div class="pageColumnLeft"></div>
-    <div class="pageColumnRight">
-        <a href="<c:url value="/?lang=de"/>">Deutsch</a>
-        <br>
-        <a href="<c:url value="/?lang=en"/>">Englisch</a>
-        <h1 id="myTitle"><fmt:message key="pages.home.title" bundle="${messageBundle}"/></h1>
-        <p>
-            <a href="release-table"><fmt:message key="pages.releaseTable.title" bundle="${messageBundle}"/></a>
-        </p>
-        <p>
-            <a href="release-build"><fmt:message key="pages.releaseBuild.title" bundle="${messageBundle}"/></a>
-        </p>
-        check ${pageContext.request.locale}
-    </div>
-</div>
-
-
-
-</body>
+	<body>
+	
+		<div class="pageRow">
+		    <div class="pageColumnLeft"></div>
+		    <div class="pageColumnCenter">
+		    	<jsp:include page="languageSwitch.jsp" />
+		        <h1>${pageTitle}</h1>
+		        <p>
+		            <a href="release-table"><fmt:message key="pages.releaseTable.title" bundle="${messageBundle}"/></a>
+		        </p>
+		        <p>
+		            <a href="release-build"><fmt:message key="pages.releaseBuild.title" bundle="${messageBundle}"/></a>
+		        </p>
+		    </div>
+		    <div class="pageColumnRight"></div>
+		</div>
+	
+	</body>
 </html>
