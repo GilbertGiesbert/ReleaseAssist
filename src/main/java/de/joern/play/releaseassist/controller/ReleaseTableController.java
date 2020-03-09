@@ -2,6 +2,7 @@ package de.joern.play.releaseassist.controller;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,6 +22,9 @@ import de.joern.play.releaseassist.mock.MockReleaseTableBuilder;
 @Controller
 @RequestMapping("/release-table")
 public class ReleaseTableController {
+	
+	@Value("${pages.releaseTable.form.lastReleaseBranchName.example}")
+	private String lastReleaseBranchNameExample;
 	
 	@Autowired
 	ReleaseTableFormValidator releaseTableFormValidator;
@@ -43,6 +47,7 @@ public class ReleaseTableController {
 	public String showForm(ModelMap model) {
 
 		model.addAttribute("form", new ReleaseTableForm());
+		model.addAttribute("lastReleaseBranchNameExample", lastReleaseBranchNameExample);
 		return "releaseTable";
 	}
 

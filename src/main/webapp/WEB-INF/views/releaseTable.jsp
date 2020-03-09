@@ -57,7 +57,9 @@
 							<form:errors path="lastReleaseBranchName" />
 							<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
 							<form:input path="lastReleaseBranchName" type="text" class="form-control ${errorClass}" aria-describedby="lastReleaseBranchNameHelp"/>
-							<small id="lastReleaseBranchNameHelp" class="form-text text-muted">Bli bla blubb.</small>
+							<spring:message code="common.example.abbreviated" var="example"/>
+							<spring:eval var="applicationProperty" expression="@environment.getProperty('pages.releaseTable.form.lastReleaseBranchName.example')"/>
+							<small id="lastReleaseBranchNameHelp" class="form-text text-muted">${example}: ${applicationProperty}</small>
 						</spring:bind>
 					</div>
 					
