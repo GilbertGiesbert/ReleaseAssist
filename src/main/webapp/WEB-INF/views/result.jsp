@@ -14,10 +14,12 @@
 		<jsp:param name="pageTitle" value="${pageTitle}"/>
 	</jsp:include>
 	<body>	
-		successTitle: ${successTitle}
+		resultSuccess: ${resultSuccess}
 		<br>
-		successMessage: ${successMessage}
+		resultTitle: ${resultTitle}
 		<br>
-		successResult: ${successResult}
+		resultMessage: ${resultMessage}
+		<br>
+		resultContent: ${resultContent}
 	</body>
 </html>

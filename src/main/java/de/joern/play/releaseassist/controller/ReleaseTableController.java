@@ -30,14 +30,13 @@ public class ReleaseTableController {
 		binder.setValidator(releaseTableFormValidator);
 	}
 	
-	@RequestMapping(value = "/action-success", method = RequestMethod.GET)
-	public String showSuccess(ModelMap model) {
-		return "actionSuccess";
-	}
-	
-	@RequestMapping(value = "/action-fail", method = RequestMethod.GET)
+	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showFail(ModelMap model) {
-		return "actionFail";
+		
+		if(model.get("resultMessage") == null) {
+			return "redirect:/";
+		}
+		return "result";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -56,21 +55,20 @@ public class ReleaseTableController {
 			return "/releaseTable";
 		}
 		
-		String releaseTable;
+		redirectAttributes.addFlashAttribute("resultSuccess", true);
+		redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.successTitle");
+		redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.successMessage");
+		
 		try {
-			releaseTable = MockReleaseTableBuilder.buildReleaseTable(form);
+			String releaseTable = MockReleaseTableBuilder.buildReleaseTable(form);
+			redirectAttributes.addFlashAttribute("resultContent", releaseTable);
 		}catch(Exception ex) {
 			
-			redirectAttributes.addFlashAttribute("failTitle", "pages.result.releaseTable.errorTitle");
-			redirectAttributes.addFlashAttribute("failMessage", ex.getMessage());
-			redirectAttributes.addFlashAttribute("failCause", ex.getCause().toString());
-			redirectAttributes.addFlashAttribute("failStackTrace", ExceptionUtils.getStackTrace(ex));
-			return "redirect:/release-table/action-fail";
+			redirectAttributes.addFlashAttribute("resultSuccess", false);
+			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.successTitle");
+			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.successMessage");
+			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
-		
-		redirectAttributes.addFlashAttribute("successTitle", "pages.result.releaseTable.successTitle");
-		redirectAttributes.addFlashAttribute("successMessage", "pages.result.releaseTable.successMessage");
-		redirectAttributes.addFlashAttribute("successResult", releaseTable);
-		return "redirect:/release-table/action-success";
+		return "redirect:/release-table/result";
 	}
 }

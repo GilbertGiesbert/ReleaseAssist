@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import de.joern.play.releaseassist.form.ReleaseBuildForm;
 import de.joern.play.releaseassist.form.ReleaseBuildFormValidator;
 import de.joern.play.releaseassist.mock.MockReleaseBuilder;
-import de.joern.play.releaseassist.mock.MockReleaseTableBuilder;
 
 @Controller
 @RequestMapping("/release-build")
@@ -31,14 +30,13 @@ public class ReleaseBuildController {
 		binder.setValidator(releaseBuildFormValidator);
 	}
 	
-	@RequestMapping(value = "/action-success", method = RequestMethod.GET)
-	public String showSuccess(ModelMap model) {
-		return "actionSuccess";
-	}
-	
-	@RequestMapping(value = "/action-fail", method = RequestMethod.GET)
+	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showFail(ModelMap model) {
-		return "actionFail";
+		
+		if(model.get("resultMessage") == null) {
+			return "redirect:/";
+		}
+		return "result";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -57,20 +55,20 @@ public class ReleaseBuildController {
 			return "/releaseBuild";
 		}
 		
+		redirectAttributes.addFlashAttribute("resultSuccess", true);
+		redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBuild.successTitle");
+		redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBuild.successMessage");
+		
 		try {
 			MockReleaseBuilder.buildRelease(form);
 		}catch(Exception ex) {
 			
-			redirectAttributes.addFlashAttribute("failTitle", "pages.result.releaseTable.errorTitle");
-			redirectAttributes.addFlashAttribute("failMessage", ex.getMessage());
-			redirectAttributes.addFlashAttribute("failCause", ex.getCause().toString());
-			redirectAttributes.addFlashAttribute("failStackTrace", ExceptionUtils.getStackTrace(ex));
-			return "redirect:/release-build/action-fail";
+			redirectAttributes.addFlashAttribute("resultSuccess", false);
+			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBuild.successTitle");
+			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBuild.successMessage");
+			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
-		
-		redirectAttributes.addFlashAttribute("successTitle", "pages.result.releaseTable.successTitle");
-		redirectAttributes.addFlashAttribute("successMessage", "pages.result.releaseTable.successMessage");
-		return "redirect:/release-build/action-success";
+		return "redirect:/release-build/result";
 	}
 
 }
