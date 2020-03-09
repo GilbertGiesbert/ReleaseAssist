@@ -5,6 +5,9 @@ public class ReleaseTableForm {
 	private String jiraUserName;
 	
 	private String jiraPassword;
+	
+	private String lastReleaseBranchName;
+	
 
 	public String getJiraUserName() {
 		return jiraUserName;
@@ -20,5 +23,13 @@ public class ReleaseTableForm {
 
 	public void setJiraPassword(String jiraPassword) {
 		this.jiraPassword = jiraPassword;
+	}
+
+	public String getLastReleaseBranchName() {
+		return lastReleaseBranchName;
+	}
+
+	public void setLastReleaseBranchName(String lastReleaseBranchName) {
+		this.lastReleaseBranchName = lastReleaseBranchName;
 	}
 }

@@ -7,13 +7,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:message code="pages.releaseBuild.title" var="pageTitle"/>
+<spring:message code="pages.releaseTable.title" var="pageTitle"/>
 
 <html>
 	<jsp:include page="fragments/head.jsp" >
 		<jsp:param name="pageTitle" value="${pageTitle}"/>
 	</jsp:include>
 	<body>	
-		success: ${successMessage}
+		successTitle: ${successTitle}
+		<br>
+		successMessage: ${successMessage}
+		<br>
+		successResult: ${successResult}
 	</body>
 </html>

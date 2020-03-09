@@ -14,6 +14,12 @@
 		<jsp:param name="pageTitle" value="${pageTitle}"/>
 	</jsp:include>
 	<body>	
-		success: ${successMessage}
+		failTitle: ${failTitle}
+		<br>
+		failMessage: ${failMessage}
+		<br>
+		failCause: ${failCause}
+		<br>
+		failStackTrace: ${failStackTrace}
 	</body>
 </html>

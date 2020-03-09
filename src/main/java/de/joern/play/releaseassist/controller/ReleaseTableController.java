@@ -1,5 +1,6 @@
 package de.joern.play.releaseassist.controller;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import de.joern.play.releaseassist.form.ReleaseTableForm;
 import de.joern.play.releaseassist.form.ReleaseTableFormValidator;
+import de.joern.play.releaseassist.mock.MockReleaseTableBuilder;
 
 @Controller
 @RequestMapping("/release-table")
@@ -28,20 +30,25 @@ public class ReleaseTableController {
 		binder.setValidator(releaseTableFormValidator);
 	}
 	
-	@RequestMapping(value = "/table-success", method = RequestMethod.GET)
+	@RequestMapping(value = "/action-success", method = RequestMethod.GET)
 	public String showSuccess(ModelMap model) {
-		return "releaseTableSuccess";
+		return "actionSuccess";
+	}
+	
+	@RequestMapping(value = "/action-fail", method = RequestMethod.GET)
+	public String showFail(ModelMap model) {
+		return "actionFail";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getForm(ModelMap model) {
+	public String showForm(ModelMap model) {
 
 		model.addAttribute("form", new ReleaseTableForm());
 		return "releaseTable";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String postSuccess(@ModelAttribute("form") @Validated ReleaseTableForm form,
+	public String handleForm(@ModelAttribute("form") @Validated ReleaseTableForm form,
 			BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		
 		
@@ -49,9 +56,21 @@ public class ReleaseTableController {
 			return "/releaseTable";
 		}
 		
-		redirectAttributes.addFlashAttribute("successMessage", "Voller Erfolg - release tabelle");
+		String releaseTable;
+		try {
+			releaseTable = MockReleaseTableBuilder.buildReleaseTable(form);
+		}catch(Exception ex) {
+			
+			redirectAttributes.addFlashAttribute("failTitle", "pages.result.releaseTable.errorTitle");
+			redirectAttributes.addFlashAttribute("failMessage", ex.getMessage());
+			redirectAttributes.addFlashAttribute("failCause", ex.getCause().toString());
+			redirectAttributes.addFlashAttribute("failStackTrace", ExceptionUtils.getStackTrace(ex));
+			return "redirect:/release-table/action-fail";
+		}
 		
-		return "redirect:/release-table/table-success";
+		redirectAttributes.addFlashAttribute("successTitle", "pages.result.releaseTable.successTitle");
+		redirectAttributes.addFlashAttribute("successMessage", "pages.result.releaseTable.successMessage");
+		redirectAttributes.addFlashAttribute("successResult", releaseTable);
+		return "redirect:/release-table/action-success";
 	}
-
 }
