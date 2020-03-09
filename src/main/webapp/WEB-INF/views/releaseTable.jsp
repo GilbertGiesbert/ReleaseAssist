@@ -33,17 +33,35 @@
 				<spring:url value="/release-table" var="formUrl" />
 				<form:form method="post" modelAttribute="form" action="${formUrl}">
 	
-					<spring:bind path="jiraUserName">
-						<form:input path="jiraUserName" type="text" />
-						<form:errors path="jiraUserName" />
-					</spring:bind>
+					<div class="form-group">
+						<spring:bind path="jiraUserName">
+							<label for="jiraUserName"><spring:message code="pages.releaseTable.form.jiraUserName"/></label>
+							<form:errors path="jiraUserName" />
+							<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
+							<form:input path="jiraUserName" type="text" class="form-control ${errorClass}"/>
+						</spring:bind>
+					</div>
 					
-					<spring:bind path="jiraPassword">
-						<form:input path="jiraPassword" type="text" />
-						<form:errors path="jiraPassword" />
-					</spring:bind>
+					<div class="form-group">
+						<spring:bind path="jiraPassword">
+							<label for="jiraPassword"><spring:message code="pages.releaseTable.form.jiraPassword"/></label>
+							<form:errors path="jiraPassword" />
+							<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
+							<form:input path="jiraPassword" type="password" class="form-control ${errorClass}"/>
+						</spring:bind>
+					</div>
 					
-					<button type="submit" >Submit</button>
+					<div class="form-group">
+						<spring:bind path="lastReleaseBranchName">
+							<label for="lastReleaseBranchName"><spring:message code="pages.releaseTable.form.lastReleaseBranchName"/></label>
+							<form:errors path="lastReleaseBranchName" />
+							<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
+							<form:input path="lastReleaseBranchName" type="text" class="form-control ${errorClass}" aria-describedby="lastReleaseBranchNameHelp"/>
+							<small id="lastReleaseBranchNameHelp" class="form-text text-muted">Bli bla blubb.</small>
+						</spring:bind>
+					</div>
+					
+					<button type="submit" class="btn btn-primary float-right">Submit</button>
 	
 				</form:form>
 				
