@@ -13,17 +13,4 @@ public class HomeController {
     public String mapHome(ModelMap model) {
         return "home";
     }
- 
-    @RequestMapping(value = "/release-build", method = RequestMethod.GET)
-    public String mapReleaseBuild(ModelMap model) {
-    	model.addAttribute("greeting", "hi, here's joern again");
-        return "releaseBuild";
-    }
-    
-    @RequestMapping(value = "/release-table", method = RequestMethod.GET)
-    public String mapReleaseTable(ModelMap model) {
-    	model.addAttribute("greeting", "hi, here's joern again");
-        return "releaseTable";
-    }
- 
 }

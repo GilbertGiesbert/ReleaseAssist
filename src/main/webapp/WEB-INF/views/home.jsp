@@ -5,14 +5,13 @@
         pageEncoding="ISO-8859-1"
         trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<fmt:setBundle basename="message" var="messageBundle" />
-<fmt:message key="pages.home.title" bundle="${messageBundle}" var="pageTitle"/>
+<spring:message code="pages.home.title" var="pageTitle"/>
 
 <html>
 	
-	<jsp:include page="head.jsp" >
+	<jsp:include page="fragments/head.jsp" >
 		<jsp:param name="pageTitle" value="${pageTitle}"/>
 	</jsp:include>
 
@@ -21,13 +20,15 @@
 		<div class="pageRow">
 		    <div class="pageColumnLeft"></div>
 		    <div class="pageColumnCenter">
-		    	<jsp:include page="languageSwitch.jsp" />
-		        <h1>${pageTitle}</h1>
+		    	<jsp:include page="fragments/titleRow.jsp" >
+					<jsp:param name="pageTitle" value="${pageTitle}"/>
+					<jsp:param name="showHomeButton" value="${false}"/>
+				</jsp:include>
 		        <p>
-		            <a href="release-table"><fmt:message key="pages.home.link.releaseTable" bundle="${messageBundle}"/></a>
+		            <a href="release-table"><spring:message code="pages.home.link.releaseTable"/></a>
 		        </p>
 		        <p>
-		            <a href="release-build"><fmt:message key="pages.home.link.releaseBuild" bundle="${messageBundle}"/></a>
+		            <a href="release-build"><spring:message code="pages.home.link.releaseBuild"/></a>
 		        </p>
 		    </div>
 		    <div class="pageColumnRight"></div>

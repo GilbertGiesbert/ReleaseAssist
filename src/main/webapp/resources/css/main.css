@@ -21,8 +21,17 @@ body {
   width: 30%;
 }
 
-h1 {
+.titleRow {
   margin-bottom: 24px;
+  vertical-align: center;
+}
+
+.homeIcon {
+	width: 32px;
+	float: left;
+	white-space: nowrap;
+	margin-right: 24px;
+	vertical-align: center;
 }
 
 .flagContainer {

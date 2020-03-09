@@ -5,13 +5,12 @@
         pageEncoding="ISO-8859-1"
         trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<fmt:setBundle basename="message" var="messageBundle" />
+<spring:message code="common.homeButton.title" var="buttonTitle"/>
+<c:url value="/images/home.png" var="buttonTitleUrl"/>
 
-<p>
-	<a href="${pageContext.request.contextPath}">
-		<img title="<fmt:message key="common.homeButton.title" bundle="${messageBundle}"/>"
-					src="<c:url value="/images/home.png"/>" width="48px">
-	</a>
-</p>
+
+<a class="homeLink" href="${pageContext.request.contextPath}">
+	<img class="homeIcon" title="${buttonTitle}" src="${buttonTitleUrl}">
+</a>

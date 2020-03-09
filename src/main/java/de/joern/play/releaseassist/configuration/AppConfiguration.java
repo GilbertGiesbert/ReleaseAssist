@@ -5,24 +5,38 @@ import java.util.Locale;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "de.joern.play.releaseassist")
 public class AppConfiguration implements WebMvcConfigurer {
-	
-	   @Override
-	   public void configureViewResolvers(ViewResolverRegistry registry) {
-	      registry.jsp("/WEB-INF/views/", ".jsp");
+	   
+	   @Bean
+	   public ViewResolver internalResourceViewResolver() {
+	       InternalResourceViewResolver bean = new InternalResourceViewResolver();
+	       bean.setViewClass(JstlView.class);
+	       bean.setPrefix("/WEB-INF/views/");
+	       bean.setSuffix(".jsp");
+	       return bean;
 	   }
+	   
+		@Bean
+		public ResourceBundleMessageSource messageSource() {
+			ResourceBundleMessageSource bean = new ResourceBundleMessageSource();
+			bean.setBasenames(new String[] { "i18n/message", "i18n/validation" });
+			return bean;
+		}
 	   
 	   @Override
 	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -42,7 +56,7 @@ public class AppConfiguration implements WebMvcConfigurer {
 				   .addResourceHandler("/webjars/**")
 
 				   // not working when using webjar sources without version number
-//				   .addResourceLocations("/webjars/")
+				   // .addResourceLocations("/webjars/")
 				   .addResourceLocations("classpath:/META-INF/resources/webjars/")
 
 				   // use webjar sources without version number

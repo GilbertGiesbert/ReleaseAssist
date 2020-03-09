@@ -5,23 +5,43 @@
         pageEncoding="ISO-8859-1"
         trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<fmt:setBundle basename="message" var="messageBundle" />
-<fmt:message key="pages.releaseBuild.title" bundle="${messageBundle}" var="pageTitle"/>
+<spring:message code="pages.releaseBuild.title" var="pageTitle"/>
 
 <html>
-	<jsp:include page="head.jsp" >
+	<jsp:include page="fragments/head.jsp" >
 		<jsp:param name="pageTitle" value="${pageTitle}"/>
 	</jsp:include>
 	<body>	
 		<div class="pageRow">
 			<div class="pageColumnLeft"></div>
 			<div class="pageColumnCenter">
-				<jsp:include page="languageSwitch.jsp" />
-				<jsp:include page="homeButton.jsp" />
-				<h1>${pageTitle}</h1>
-			</div>
+				
+				<jsp:include page="fragments/titleRow.jsp" >
+					<jsp:param name="pageTitle" value="${pageTitle}"/>
+				</jsp:include>
+				
+				<spring:url value="/release-build" var="formUrl" />
+				<form:form method="post" modelAttribute="form" action="${formUrl}">
+	
+					<spring:bind path="gitLabUserName">
+						<form:input path="gitLabUserName" type="text" />
+						<form:errors path="gitLabUserName" />
+					</spring:bind>
+					
+					<spring:bind path="gitLabPassword">
+						<form:input path="gitLabPassword" type="text" />
+						<form:errors path="gitLabPassword" />
+					</spring:bind>
+					
+					<button type="submit" >Submit</button>
+	
+				</form:form>
+
+
+		</div>
 		</div>
 	</body>
 </html>
