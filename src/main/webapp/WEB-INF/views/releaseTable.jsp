@@ -23,6 +23,12 @@
 					<jsp:param name="pageTitle" value="${pageTitle}"/>
 				</jsp:include>
 				
+				<!-- show global errors -->
+				<spring:hasBindErrors name="form">
+					<div class="alert alert-danger">
+						<form:errors path="form" />
+					</div>
+				</spring:hasBindErrors>
 				
 				<spring:url value="/release-table" var="formUrl" />
 				<form:form method="post" modelAttribute="form" action="${formUrl}">

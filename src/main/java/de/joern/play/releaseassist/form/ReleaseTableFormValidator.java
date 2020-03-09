@@ -1,8 +1,11 @@
 package de.joern.play.releaseassist.form;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 @Component
@@ -18,8 +21,23 @@ public class ReleaseTableFormValidator implements Validator {
 		
 		ReleaseTableForm form = (ReleaseTableForm) target;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "jiraUserName", "common.formError.blank");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "jiraPassword", "common.formError.blank");
+		Map<String, String> checkMap = new HashMap<>();
+		checkMap.put("jiraUserName", form.getJiraUserName());
+		checkMap.put("lastReleaseBranchName", form.getLastReleaseBranchName());
+		
+		boolean foundBlank = false;
+		for(String fieldName : checkMap.keySet()) {
+			
+			String fieldValue = checkMap.get(fieldName);
+			if(StringUtils.isBlank(fieldValue)) {
+				errors.rejectValue(fieldName, "common.blankString");
+				foundBlank = true;
+			}
+		}
+		
+		if(foundBlank) {
+			errors.reject("common.formError.global.blankFields");
+		}
 		
 	}
 

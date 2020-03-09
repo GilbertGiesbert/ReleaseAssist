@@ -12,6 +12,8 @@ public class ReleaseBuildForm {
 	
 	private String initDocumentationUserName;
 	
+	private String initDocumentationPassword;
+	
 	private String releaseBranchName;
 
 	public String getGitLabUserName() {
@@ -52,6 +54,14 @@ public class ReleaseBuildForm {
 
 	public void setInitDocumentationUserName(String initDocumentationUserName) {
 		this.initDocumentationUserName = initDocumentationUserName;
+	}
+
+	public String getInitDocumentationPassword() {
+		return initDocumentationPassword;
+	}
+
+	public void setInitDocumentationPassword(String initDocumentationPassword) {
+		this.initDocumentationPassword = initDocumentationPassword;
 	}
 
 	public String getReleaseBranchName() {
