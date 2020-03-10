@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import de.joern.play.releaseassist.form.ReleaseBuildForm;
-import de.joern.play.releaseassist.form.ReleaseBuildFormValidator;
-import de.joern.play.releaseassist.mock.MockReleaseBuilder;
+import de.joern.play.releaseassist.form.ReleaseBranchForm;
+import de.joern.play.releaseassist.form.ReleaseBranchFormValidator;
+import de.joern.play.releaseassist.mock.MockReleaseBranchBuilder;
 
 @Controller
-@RequestMapping("/release-build")
-public class ReleaseBuildController {
+@RequestMapping("/release-branch")
+public class ReleaseBranchController {
 	
 	@Autowired
-	ReleaseBuildFormValidator releaseBuildFormValidator;
+	ReleaseBranchFormValidator releaseBranchFormValidator;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		binder.setValidator(releaseBuildFormValidator);
+		binder.setValidator(releaseBranchFormValidator);
 	}
 	
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
@@ -42,33 +42,33 @@ public class ReleaseBuildController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 
-		model.addAttribute("form", new ReleaseBuildForm());
-		return "releaseBuild";
+		model.addAttribute("releaseBranchForm", new ReleaseBranchForm());
+		return "releaseBranch";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String handleForm(@ModelAttribute("form") @Validated ReleaseBuildForm form,
+	public String handleForm(@ModelAttribute("releaseBranchForm") @Validated ReleaseBranchForm form,
 			BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		
 		
 		if(result.hasErrors()) {
-			return "/releaseBuild";
+			return "/releaseBranch";
 		}
 		
 		redirectAttributes.addFlashAttribute("resultSuccess", true);
-		redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBuild.successTitle");
-		redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBuild.successMessage");
+		redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBranch.successTitle");
+		redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBranch.successMessage");
 		
 		try {
-			MockReleaseBuilder.buildRelease(form);
+			MockReleaseBranchBuilder.buildReleaseBranch(form);
 		}catch(Exception ex) {
 			
 			redirectAttributes.addFlashAttribute("resultSuccess", false);
-			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBuild.successTitle");
-			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBuild.successMessage");
+			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBranch.successTitle");
+			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBranch.successMessage");
 			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
-		return "redirect:/release-build/result";
+		return "redirect:/release-branch/result";
 	}
 
 }

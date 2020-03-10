@@ -9,17 +9,17 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public class ReleaseBuildFormValidator implements Validator {
+public class ReleaseBranchFormValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return ReleaseBuildForm.class.equals(clazz);
+		return ReleaseBranchForm.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		ReleaseBuildForm form = (ReleaseBuildForm) target;
+		ReleaseBranchForm form = (ReleaseBranchForm) target;
 		
 		Map<String, String> checkMap = new HashMap<>();
 		checkMap.put("gitLabUserName", form.getGitLabUserName());

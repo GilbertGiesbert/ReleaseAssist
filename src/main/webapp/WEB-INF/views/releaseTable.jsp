@@ -21,23 +21,17 @@
 			    <div class="col-8">
 			    
 				    <jsp:include page="fragments/navBar.jsp" />
-				    
-				    
-  							<h1 class="subpageHeadline">${pageTitle}</h1>
-  							
-  						
-  					
-  							
+  					<h1 class="subpageHeadline">${pageTitle}</h1>
 					
 					<!-- show global errors -->
-					<spring:hasBindErrors name="form">
+					<spring:hasBindErrors name="releaseTableForm">
 						<div class="alert alert-danger">
-							<form:errors path="form" />
+							<form:errors path="releaseTableForm" />
 						</div>
 					</spring:hasBindErrors>
 					
 					<spring:url value="/release-table" var="formUrl" />
-					<form:form method="post" modelAttribute="form" action="${formUrl}">
+					<form:form method="post" modelAttribute="releaseTableForm" action="${formUrl}">
 		
 						<div class="form-group">
 							<spring:bind path="jiraUserName">
@@ -69,7 +63,9 @@
 							</spring:bind>
 						</div>
 						
-						<button type="submit" class="btn btn-primary float-right">Submit</button>
+						<button type="submit" class="btn btn-primary float-right">
+							<spring:message code="pages.releaseTable.form.submit"/>
+						</button>
 		
 					</form:form>
 				

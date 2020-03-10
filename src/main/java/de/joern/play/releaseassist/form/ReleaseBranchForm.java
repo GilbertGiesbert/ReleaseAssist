@@ -1,6 +1,6 @@
 package de.joern.play.releaseassist.form;
 
-public class ReleaseBuildForm {
+public class ReleaseBranchForm {
 	
 	private String gitLabUserName;
 	

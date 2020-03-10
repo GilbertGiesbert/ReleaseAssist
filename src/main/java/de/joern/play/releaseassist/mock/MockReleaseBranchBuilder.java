@@ -1,17 +1,17 @@
 package de.joern.play.releaseassist.mock;
 
-import de.joern.play.releaseassist.form.ReleaseBuildForm;
+import de.joern.play.releaseassist.form.ReleaseBranchForm;
 
-public class MockReleaseBuilder {
+public class MockReleaseBranchBuilder {
 	
-	public static String buildRelease(ReleaseBuildForm form) {
+	public static String buildReleaseBranch(ReleaseBranchForm form) {
 		
 		boolean doFail = form.getGitLabUserName().contains("error");
 		
 		try {
 			return internalCalls(doFail);
 		}catch(Exception ex) {
-			throw new RuntimeException("Failed to build release.", ex);
+			throw new RuntimeException("Failed to build release branch.", ex);
 		} 
 	}
 	
@@ -20,7 +20,7 @@ public class MockReleaseBuilder {
 		if(doFail) {
 			throw new RuntimeException("Internal calls failed.");
 		}
-		return "releaseBuildMockString";
+		return "releaseBranchMockString";
 	}
 
 }

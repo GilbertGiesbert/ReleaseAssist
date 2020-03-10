@@ -40,8 +40,8 @@
 							</div>
 							<div class="col-2"></div>
 							<div class="col-4">
-								<a href="release-build" class="btn btn-primary btn-block" role="button">
-									<spring:message code="pages.home.link.releaseBuild" />
+								<a href="release-branch" class="btn btn-primary btn-block" role="button">
+									<spring:message code="pages.home.link.releaseBranch" />
 								</a>	
 							</div>
 							
