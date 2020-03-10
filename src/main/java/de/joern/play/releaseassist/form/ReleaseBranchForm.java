@@ -2,6 +2,8 @@ package de.joern.play.releaseassist.form;
 
 public class ReleaseBranchForm {
 	
+	private String releaseBranchName;
+	
 	private String gitLabUserName;
 	
 	private String gitLabPassword;
@@ -13,8 +15,6 @@ public class ReleaseBranchForm {
 	private String initDocumentationUserName;
 	
 	private String initDocumentationPassword;
-	
-	private String releaseBranchName;
 
 	public String getGitLabUserName() {
 		return gitLabUserName;

@@ -34,6 +34,12 @@
 					<form:form method="post" modelAttribute="releaseBranchForm" action="${formUrl}">
 					
 						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="releaseBranchName"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.releaseBranchName"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
+					
+						<jsp:include page="fragments/inputField.jsp" >
 							<jsp:param name="fieldName" value="gitLabUserName"/>
 							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.gitLabUserName"/>
 							<jsp:param name="fieldType" value="text"/>
@@ -45,6 +51,30 @@
 							<jsp:param name="fieldType" value="password"/>
 						</jsp:include>
 						
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="revertList"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.revertList"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
+						
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="initDocumentationReleasePageUrl"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.initDocumentationReleasePageUrl"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
+						
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="initDocumentationUserName"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.initDocumentationUserName"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
+						
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="initDocumentationPassword"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.initDocumentationPassword"/>
+							<jsp:param name="fieldType" value="password"/>
+						</jsp:include>
+
 						<button type="submit" class="btn btn-primary float-right">
 							<spring:message code="pages.releaseBranch.form.submit"/>
 						</button>
