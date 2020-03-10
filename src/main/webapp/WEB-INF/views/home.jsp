@@ -24,31 +24,30 @@
 			    	
 			    	<jsp:include page="fragments/navBar.jsp" />
 					
-					  <div class="jumbotron">
-					    <h1 class="display-4">${pageTitle}</h1>
-					    <hr class="my-4">
-					    <p class="lead">This web app is meant to support <a href="#">bloa blubb</a>.</p>
-					  </div>
+					
+					<h1 class="homepageHeadline">${pageTitle}</h1>
+					<hr class="homepageHr">
+					
+					
 	
 					<div class="container">
-						<div class="row">
-							<div class="col-1"></div>
+						<div class="row justify-content-md-center">
+							
 							<div class="col-4">
-								<ul class="list-group">
-									<li class="list-group-item list-group-item-action">
-										<a href="release-table">
-											<spring:message code="pages.home.link.releaseTable" />
-										</a>
-									</li>
-									<li class="list-group-item list-group-item-action">
-										<a href="release-build">
-											<spring:message code="pages.home.link.releaseBuild" />
-										</a>
-									</li>
-								</ul>
+								<a href="release-table" class="btn btn-primary btn-block" role="button">
+									<spring:message code="pages.home.link.releaseTable" />
+								</a>
 							</div>
+							<div class="col-2"></div>
+							<div class="col-4">
+								<a href="release-build" class="btn btn-primary btn-block" role="button">
+									<spring:message code="pages.home.link.releaseBuild" />
+								</a>	
+							</div>
+							
 						</div>
 					</div>
+					
 				</div>
 				<div class="col"></div>
 			</div>
