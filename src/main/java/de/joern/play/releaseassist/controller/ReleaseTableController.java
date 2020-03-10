@@ -1,6 +1,8 @@
 package de.joern.play.releaseassist.controller;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,8 @@ import de.joern.play.releaseassist.mock.MockReleaseTableBuilder;
 @Controller
 @RequestMapping("/release-table")
 public class ReleaseTableController {
-
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ReleaseTableController.class);
 	
 	@Autowired
 	ReleaseTableFormValidator releaseTableFormValidator;
@@ -51,6 +54,7 @@ public class ReleaseTableController {
 	public String handleForm(@ModelAttribute("releaseTableForm") @Validated ReleaseTableForm form,
 			BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		
+		LOG.debug("handleForm(): form="+form);
 		
 		if(result.hasErrors()) {
 			return "/releaseTable";

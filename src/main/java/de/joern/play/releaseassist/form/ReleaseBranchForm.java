@@ -1,5 +1,8 @@
 package de.joern.play.releaseassist.form;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class ReleaseBranchForm {
 	
 	private String releaseBranchName;
@@ -70,5 +73,9 @@ public class ReleaseBranchForm {
 
 	public void setReleaseBranchName(String releaseBranchName) {
 		this.releaseBranchName = releaseBranchName;
+	}
+	
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 }
