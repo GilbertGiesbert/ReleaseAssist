@@ -33,9 +33,9 @@ public class ReleaseBranchController {
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showFail(ModelMap model) {
 		
-		if(model.get("resultMessage") == null) {
-			return "redirect:/";
-		}
+//		if(model.get("resultMessage") == null) {
+//			return "redirect:/";
+//		}
 		return "result";
 	}
 
@@ -64,8 +64,8 @@ public class ReleaseBranchController {
 		}catch(Exception ex) {
 			
 			redirectAttributes.addFlashAttribute("resultSuccess", false);
-			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBranch.successTitle");
-			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBranch.successMessage");
+			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseBranch.errorTitle");
+			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseBranch.errorMessage");
 			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
 		return "redirect:/release-branch/result";

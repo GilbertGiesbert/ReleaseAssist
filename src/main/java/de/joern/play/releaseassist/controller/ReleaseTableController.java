@@ -34,9 +34,9 @@ public class ReleaseTableController {
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showFail(ModelMap model) {
 		
-		if(model.get("resultMessage") == null) {
-			return "redirect:/";
-		}
+//		if(model.get("resultMessage") == null) {
+//			return "redirect:/";
+//		}
 		return "result";
 	}
 
@@ -66,8 +66,8 @@ public class ReleaseTableController {
 		}catch(Exception ex) {
 			
 			redirectAttributes.addFlashAttribute("resultSuccess", false);
-			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.successTitle");
-			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.successMessage");
+			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.errorTitle");
+			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.errorMessage");
 			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
 		return "redirect:/release-table/result";
