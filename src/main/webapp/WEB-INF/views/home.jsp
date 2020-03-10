@@ -17,21 +17,41 @@
 
 	<body>
 	
-		<div class="pageRow">
-		    <div class="pageColumnLeft"></div>
-		    <div class="pageColumnCenter">
-		    	<jsp:include page="fragments/titleRow.jsp" >
-					<jsp:param name="pageTitle" value="${pageTitle}"/>
-					<jsp:param name="showHomeButton" value="${false}"/>
-				</jsp:include>
-		        <p>
-		            <a href="release-table"><spring:message code="pages.home.link.releaseTable"/></a>
-		        </p>
-		        <p>
-		            <a href="release-build"><spring:message code="pages.home.link.releaseBuild"/></a>
-		        </p>
-		    </div>
-		    <div class="pageColumnRight"></div>
+		<div class="container">
+			<div class="row">
+			    <div class="col"></div>
+			    <div class="col-9">
+			    	
+			    	<jsp:include page="fragments/navBar.jsp" />
+					
+					  <div class="jumbotron">
+					    <h1 class="display-4">${pageTitle}</h1>
+					    <hr class="my-4">
+					    <p class="lead">This web app is meant to support <a href="#">bloa blubb</a>.</p>
+					  </div>
+	
+					<div class="container">
+						<div class="row">
+							<div class="col-1"></div>
+							<div class="col-4">
+								<ul class="list-group">
+									<li class="list-group-item list-group-item-action">
+										<a href="release-table">
+											<spring:message code="pages.home.link.releaseTable" />
+										</a>
+									</li>
+									<li class="list-group-item list-group-item-action">
+										<a href="release-build">
+											<spring:message code="pages.home.link.releaseBuild" />
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col"></div>
+			</div>
 		</div>
 	
 	</body>

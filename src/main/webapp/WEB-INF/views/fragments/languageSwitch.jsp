@@ -10,13 +10,13 @@
 
 <p class="flagContainer">
 
-	<spring:message code="common.languageSwitch.de" var="imgTitle"/>
+	<spring:message code="common.flagIcon.title.de" var="imgTitle"/>
 	<c:url value="/images/flag-germany-rect.png" var="imgUrl"/>
 	<a href="?lang=de">	
 		<img class="flagIcon" title="${imgTitle}" src="${imgUrl}" >
 	</a>
 	&nbsp;
-	<spring:message code="common.languageSwitch.en" var="imgTitle"/>
+	<spring:message code="common.flagIcon.title.en" var="imgTitle"/>
 	<c:url value="/images/flag-usa-rect.png" var="imgUrl"/>
 	<a href="?lang=en">
 		<img class="flagIcon" title="${imgTitle}" src="${imgUrl}" >

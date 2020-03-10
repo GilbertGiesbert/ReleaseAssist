@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:message code="common.homeButton.title" var="buttonTitle"/>
+<spring:message code="common.homeIcon.title" var="buttonTitle"/>
 <c:url value="/images/home.png" var="buttonTitleUrl"/>
 
 

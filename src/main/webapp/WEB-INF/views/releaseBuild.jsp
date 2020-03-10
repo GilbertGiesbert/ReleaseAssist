@@ -18,6 +18,9 @@
 		<div class="pageRow">
 			<div class="pageColumnLeft"></div>
 			<div class="pageColumnCenter">
+			
+			
+			<jsp:include page="fragments/navBar.jsp" />
 				
 				<jsp:include page="fragments/titleRow.jsp" >
 					<jsp:param name="pageTitle" value="${pageTitle}"/>

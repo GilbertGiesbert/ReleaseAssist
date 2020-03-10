@@ -1,37 +1,7 @@
-body {
-	margin: 24px;
-}
 
-.pageRow {
-  display: flex;
-}
-
-.pageColumnLeft {
-  float: left;
-  width: 30%;
-}
-
-.pageColumnCenter {
-  float: center;
-  width: 40%;
-}
-
-.pageColumnRight {
-  float: right;
-  width: 30%;
-}
-
-.titleRow {
-  margin-bottom: 24px;
-  vertical-align: center;
-}
 
 .homeIcon {
-	width: 32px;
-	float: left;
-	white-space: nowrap;
-	margin-right: 24px;
-	vertical-align: center;
+	width: 30px;
 }
 
 .flagContainer {
@@ -40,5 +10,18 @@ body {
 }
 
 .flagIcon {
-    width: 32px;
+    width: 30px;
 }
+
+.navbar {
+	
+	/* 	rounded corners */
+	border-radius: 5px;
+	margin: 20px 0px;
+}
+
+.subpageHeadline {
+	text-align: center;
+	font-weight: 300;
+}
+
