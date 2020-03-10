@@ -33,23 +33,17 @@
 					<spring:url value="/release-branch" var="formUrl" />
 					<form:form method="post" modelAttribute="releaseBranchForm" action="${formUrl}">
 					
-						<div class="form-group">
-							<spring:bind path="gitLabUserName">
-								<label for="gitLabUserName"><spring:message code="pages.releaseBranch.form.gitLabUserName"/></label>
-								<form:errors path="gitLabUserName" />
-								<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
-								<form:input path="gitLabUserName" type="text" class="form-control ${errorClass}"/>
-							</spring:bind>
-						</div>
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="gitLabUserName"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.gitLabUserName"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
 						
-						<div class="form-group">
-							<spring:bind path="gitLabPassword">
-								<label for="gitLabPassword"><spring:message code="pages.releaseBranch.form.gitLabPassword"/></label>
-								<form:errors path="gitLabPassword" />
-								<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
-								<form:input path="gitLabPassword" type="password" class="form-control ${errorClass}"/>
-							</spring:bind>
-						</div>
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="gitLabPassword"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseBranch.form.gitLabPassword"/>
+							<jsp:param name="fieldType" value="password"/>
+						</jsp:include>
 						
 						<button type="submit" class="btn btn-primary float-right">
 							<spring:message code="pages.releaseBranch.form.submit"/>

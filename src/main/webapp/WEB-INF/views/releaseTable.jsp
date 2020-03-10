@@ -33,35 +33,28 @@
 					<spring:url value="/release-table" var="formUrl" />
 					<form:form method="post" modelAttribute="releaseTableForm" action="${formUrl}">
 		
-						<div class="form-group">
-							<spring:bind path="jiraUserName">
-								<label for="jiraUserName"><spring:message code="pages.releaseTable.form.jiraUserName"/></label>
-								<form:errors path="jiraUserName" />
-								<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
-								<form:input path="jiraUserName" type="text" class="form-control ${errorClass}"/>
-							</spring:bind>
-						</div>
+		
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="jiraUserName"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseTable.form.jiraUserName"/>
+							<jsp:param name="fieldType" value="text"/>
+						</jsp:include>
 						
-						<div class="form-group">
-							<spring:bind path="jiraPassword">
-								<label for="jiraPassword"><spring:message code="pages.releaseTable.form.jiraPassword"/></label>
-								<form:errors path="jiraPassword" />
-								<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
-								<form:input path="jiraPassword" type="password" class="form-control ${errorClass}"/>
-							</spring:bind>
-						</div>
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="jiraPassword"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseTable.form.jiraPassword"/>
+							<jsp:param name="fieldType" value="password"/>
+						</jsp:include>
 						
-						<div class="form-group">
-							<spring:bind path="lastReleaseBranchName">
-								<label for="lastReleaseBranchName"><spring:message code="pages.releaseTable.form.lastReleaseBranchName"/></label>
-								<form:errors path="lastReleaseBranchName" />
-								<c:set var="errorClass" value="${status.error ? 'is-invalid' : ''}" />
-								<form:input path="lastReleaseBranchName" type="text" class="form-control ${errorClass}" aria-describedby="lastReleaseBranchNameHelp"/>
-								<spring:message code="common.example.abbreviated" var="example"/>
-								<spring:eval var="applicationProperty" expression="@environment.getProperty('pages.releaseTable.form.lastReleaseBranchName.example')"/>
-								<small id="lastReleaseBranchNameHelp" class="form-text text-muted">${example}: ${applicationProperty}</small>
-							</spring:bind>
-						</div>
+						<spring:message code="common.example.abbreviated" var="example"/>
+						<spring:eval var="applicationProperty" expression="@environment.getProperty('pages.releaseTable.form.lastReleaseBranchName.example')"/>
+						
+						<jsp:include page="fragments/inputField.jsp" >
+							<jsp:param name="fieldName" value="lastReleaseBranchName"/>
+							<jsp:param name="fieldLabelKey" value="pages.releaseTable.form.lastReleaseBranchName"/>
+							<jsp:param name="fieldType" value="text"/>
+							<jsp:param name="fieldHelpText" value="${example}: ${applicationProperty}"/>
+						</jsp:include>	
 						
 						<button type="submit" class="btn btn-primary float-right">
 							<spring:message code="pages.releaseTable.form.submit"/>

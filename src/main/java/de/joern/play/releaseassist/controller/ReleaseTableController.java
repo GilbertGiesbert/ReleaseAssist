@@ -34,9 +34,9 @@ public class ReleaseTableController {
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showFail(ModelMap model) {
 		
-//		if(model.get("resultMessage") == null) {
-//			return "redirect:/";
-//		}
+		if(model.get("resultType") == null) {
+			return "redirect:/";
+		}
 		return "result";
 	}
 
@@ -57,8 +57,7 @@ public class ReleaseTableController {
 		}
 		
 		redirectAttributes.addFlashAttribute("resultSuccess", true);
-		redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.successTitle");
-		redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.successMessage");
+		redirectAttributes.addFlashAttribute("resultType", "releaseTable");
 		
 		try {
 			String releaseTable = MockReleaseTableBuilder.buildReleaseTable(form);
@@ -66,8 +65,6 @@ public class ReleaseTableController {
 		}catch(Exception ex) {
 			
 			redirectAttributes.addFlashAttribute("resultSuccess", false);
-			redirectAttributes.addFlashAttribute("resultTitle", "pages.result.releaseTable.errorTitle");
-			redirectAttributes.addFlashAttribute("resultMessage", "pages.result.releaseTable.errorMessage");
 			redirectAttributes.addFlashAttribute("resultContent", ExceptionUtils.getStackTrace(ex));
 		}
 		return "redirect:/release-table/result";

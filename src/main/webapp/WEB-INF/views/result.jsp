@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:message code="${resultTitle}" var="pageTitle"/>
+<spring:message code="pages.result.${resultType}.${resultSuccess ? 'success' : 'error'}Title" var="pageTitle"/>
 
 <html>
 	<jsp:include page="fragments/head.jsp" >
@@ -25,13 +25,13 @@
 					
 					<div class="alert alert-${resultSuccess ? 'success' : 'danger'}">
 						<p>
-							<spring:message code="${resultMessage}"/>
+							<spring:message code="pages.result.${resultType}.${resultSuccess ? 'success' : 'error'}Message" />
 						</p>
 					</div>
 					
 					<c:if test="${not empty resultContent }">
 						<h2>
-							<spring:message code="${resultSuccess ? 'pages.result.resultContent.success' : 'pages.result.resultContent.error'}"/>:
+							<spring:message code="pages.result.resultContent.${resultSuccess ? 'success' : 'error'}"/>:
 						</h2>
 						<p>
 							${resultContent}
