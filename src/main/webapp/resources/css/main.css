@@ -32,7 +32,11 @@
 	margin-bottom: 30px;
 }
 
-.homepageHr {
+.bigBottom {
 	margin-bottom: 100px;
+}
+
+.errorPageMessage {
+	text-align: center;
 }
 
